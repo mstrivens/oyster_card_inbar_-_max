@@ -32,4 +32,14 @@ describe Oystercard do
       end
     end
   end
+
+  describe '#deduct' do
+    context 'deduct 5 from 10 to leave balance at 5' do
+      it 'deduct 5 from balance' do
+        oystercard.top_up(10)
+        expect { oystercard.deduct(5) }.to change{
+          oystercard.balance }.by -5
+      end
+    end
+  end
 end

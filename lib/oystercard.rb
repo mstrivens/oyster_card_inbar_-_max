@@ -13,6 +13,10 @@ class Oystercard
     max_balance_exceeded ? exceeding_error : update_balance(amount)
   end
 
+  def deduct(amount)
+    @balance -= amount
+  end
+
   private
   def max_balance_exceeded
     @amount + @balance > MAX_BALANCE
@@ -21,7 +25,7 @@ class Oystercard
   def exceeding_error
     raise "Error: maximum balance of #{MAX_BALANCE} exceeded"
   end
-  
+
   def update_balance(amount)
     @balance += amount
   end
