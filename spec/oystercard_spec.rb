@@ -22,7 +22,14 @@ describe Oystercard do
       it 'tops up balance by 10' do
         expect { oystercard.top_up(10) } .to change{
           oystercard.balance }.by 10
-        end
       end
+    end
+
+    context 'beyond maximum balance' do
+      it 'raises an error' do
+        oystercard.top_up(80)
+        expect { oystercard.top_up(11) }.to raise_error("Error: maximum balance of #{Oystercard::MAX_BALANCE} exceeded")
+      end
+    end
   end
 end
